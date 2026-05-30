@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Taksande – Technical Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D1B2A;--teal:#1D9E75;--teal-light:#E1F5EE;--teal-mid:#5DCAA5;
+  --cream:#F8F6F1;--warm-gray:#888780;--border:#e2ddd6;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);overflow-x:hidden}
+
+.hero{background:var(--navy);color:#fff;padding:5rem 2rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;border-radius:50%;border:1px solid rgba(29,158,117,0.2)}
+.hero::after{content:'';position:absolute;bottom:-60px;left:25%;width:250px;height:250px;border-radius:50%;border:1px solid rgba(29,158,117,0.12)}
+.hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-block;background:rgba(29,158,117,0.2);color:var(--teal-mid);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:1.5rem;border:1px solid rgba(29,158,117,0.3)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,6vw,4.2rem);line-height:1.05;margin-bottom:0.75rem;font-weight:400}
+.hero h1 em{font-style:italic;color:var(--teal-mid)}
+.hero-subtitle{font-size:16px;color:rgba(255,255,255,0.6);font-weight:300;margin-bottom:2.5rem;max-width:520px;line-height:1.7}
+.hero-contacts{display:flex;flex-wrap:wrap;gap:12px}
+.contact-pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.15);border-radius:20px;padding:7px 16px;font-size:13px;color:rgba(255,255,255,0.8);text-decoration:none;transition:background 0.2s}
+.contact-pill:hover{background:rgba(255,255,255,0.14)}
+.contact-pill i{font-size:15px;color:var(--teal-mid)}
+
+.container{max-width:760px;margin:0 auto;padding:3.5rem 2rem}
+.section{margin-bottom:3.5rem}
+.section-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.summary-text{font-size:16px;line-height:1.85;color:#3a3530;font-weight:300}
+.summary-text strong{font-weight:500;color:var(--navy)}
+
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:2rem}
+.stat-card{background:#fff;border:0.5px solid var(--border);border-radius:14px;padding:1.4rem 1.2rem;text-align:center}
+.stat-card .num{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--teal);font-style:italic}
+.stat-card .label{font-size:12px;color:var(--warm-gray);margin-top:5px;line-height:1.5}
+
+.timeline{border-left:1px solid var(--border);padding-left:2.2rem;position:relative}
+.timeline-item{position:relative;margin-bottom:2.8rem}
+.timeline-item:last-child{margin-bottom:0}
+.timeline-item::before{content:'';position:absolute;left:-2.73rem;top:7px;width:11px;height:11px;border-radius:50%;background:var(--teal);border:2.5px solid var(--cream);box-shadow:0 0 0 1px var(--teal)}
+.job-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:4px;margin-bottom:4px}
+.job-title{font-size:15px;font-weight:500;color:var(--navy)}
+.job-period{font-size:12px;color:var(--warm-gray);white-space:nowrap}
+.job-company{font-size:13px;color:var(--teal);margin-bottom:12px}
+.job-points{list-style:none;padding:0}
+.job-points li{font-size:14px;color:#4a4540;line-height:1.7;padding:4px 0 4px 16px;position:relative}
+.job-points li::before{content:'—';position:absolute;left:0;color:var(--teal-mid);font-size:12px;top:5px}
+
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.skill-group{background:#fff;border:0.5px solid var(--border);border-radius:14px;padding:1.4rem}
+.skill-group h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--warm-gray);margin-bottom:14px;font-weight:500}
+.skill-tags{display:flex;flex-wrap:wrap;gap:7px}
+.skill-tag{background:var(--teal-light);color:#0F6E56;font-size:12px;padding:5px 12px;border-radius:20px;font-weight:400}
+
+.edu-card{background:#fff;border:0.5px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start}
+.edu-icon{width:44px;height:44px;background:var(--teal-light);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.edu-icon i{color:var(--teal);font-size:22px}
+.edu-deg{font-size:15px;font-weight:500;margin-bottom:4px}
+.edu-school{font-size:13px;color:var(--warm-gray)}
+
+.research-card{background:var(--navy);color:#fff;border-radius:14px;padding:1.75rem;margin-top:14px}
+.research-tag{display:inline-block;background:rgba(29,158,117,0.2);color:var(--teal-mid);font-size:11px;padding:4px 12px;border-radius:20px;margin-bottom:12px;letter-spacing:1px}
+.research-card .rtitle{font-size:15px;font-weight:500;margin-bottom:8px;color:#fff;line-height:1.4}
+.research-card .rdesc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.75}
+.research-card .rpubs{margin-top:10px;font-size:12px;color:var(--teal-mid)}
+
+.footer{text-align:center;padding:2.5rem 2rem;font-size:12px;color:var(--warm-gray);border-top:0.5px solid var(--border)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner>*{animation:fadeUp 0.55s ease both}
+.hero-inner>*:nth-child(1){animation-delay:0.05s}
+.hero-inner>*:nth-child(2){animation-delay:0.18s}
+.hero-inner>*:nth-child(3){animation-delay:0.3s}
+.hero-inner>*:nth-child(4){animation-delay:0.42s}
+
+@media(max-width:600px){
+  .stats-row{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .hero h1{font-size:2.4rem}
+  .job-header{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Technical Product Manager</div>
+    <h1>Aditya<br><em>Taksande</em></h1>
+    <p class="hero-subtitle">Platform & Integration · FinTech & Payments · 4+ years building products at the intersection of business strategy and engineering.</p>
+    <div class="hero-contacts">
+      <a class="contact-pill" href="mailto:taksandeaditya@gmail.com"><i class="ti ti-mail"></i>taksandeaditya@gmail.com</a>
+      <a class="contact-pill" href="https://linkedin.com/in/adityataksande" target="_blank"><i class="ti ti-brand-linkedin"></i>linkedin.com/in/adityataksande</a>
+      <span class="contact-pill"><i class="ti ti-phone"></i>+91 93252 39184</span>
+      <span class="contact-pill"><i class="ti ti-map-pin"></i>Mumbai</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <div class="section-label">About</div>
+    <p class="summary-text">I'm a TPM who enjoys the work that sits at the intersection of <strong>business strategy and engineering</strong> — figuring out what to build, why it matters, and making sure it actually ships. I've worked across roadmaps, API integrations, AI automation, and cloud migrations. The most valuable thing a PM can do is keep everyone honest about priorities.</p>
+    <div class="stats-row">
+      <div class="stat-card"><div class="num">30%</div><div class="label">Reduction in avg. turnaround time via AI automation</div></div>
+      <div class="stat-card"><div class="num">25%</div><div class="label">Improvement in first-contact resolution rate</div></div>
+      <div class="stat-card"><div class="num">40%</div><div class="label">Drop in production escalations</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Experience</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="job-header"><span class="job-title">Digital Product Manager</span><span class="job-period">Jan 2026 – Present</span></div>
+        <div class="job-company">SBI Funds Management Limited · Mumbai</div>
+        <ul class="job-points">
+          <li>Own the product roadmap and sprint backlog for two digital platforms — Darpan and Kiosk — prioritising features with OKR frameworks that balance business value against engineering capacity.</li>
+          <li>Use Working Backwards to turn stakeholder inputs and platform strategy into clearly written user stories and acceptance criteria, keeping cross-functional teams aligned sprint to sprint.</li>
+          <li>Built and maintain governance artefacts (risk registers, resource plans, executive dashboards) so senior stakeholders always have a real-time view of where delivery stands.</li>
+          <li>Lead go-to-market planning and post-launch reviews, ensuring customer feedback feeds back into the roadmap rather than getting lost.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="job-header"><span class="job-title">Manager II – Insurance Technology</span><span class="job-period">Apr 2025 – Dec 2025</span></div>
+        <div class="job-company">ICICI Prudential Life Insurance · Mumbai</div>
+        <ul class="job-points">
+          <li>Led delivery end-to-end — from requirement workshops through SIT, UAT, deployment, and post-launch — and was the main escalation point when things got complicated.</li>
+          <li>Shipped AI-driven customer servicing automation on AWS Bedrock — cut average turnaround time by 30% and removed manual work by integrating directly with CRM and backend systems.</li>
+          <li>Chaired architecture review and scope-planning sessions, making sure every trade-off decision accounted for business goals, platform strategy, customer experience, and long-term maintainability.</li>
+          <li>Ran Level of Effort sessions with architecture, QA, and business SMEs to keep estimates and forecasting honest.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="job-header"><span class="job-title">Manager I – CRM & Digital Transformation</span><span class="job-period">Apr 2023 – Mar 2025</span></div>
+        <div class="job-company">ICICI Prudential Life Insurance · Mumbai</div>
+        <ul class="job-points">
+          <li>Owned the roadmap and backlog for an omnichannel customer engagement platform spanning IVR, chatbot, WhatsApp, and email — improved first-contact resolution by 25% through journey mapping and disciplined backlog work.</li>
+          <li>Coordinated the AWS cloud migration and enterprise CRM integration — set project goals, success KPIs, security requirements, and delivery milestones, and managed scope changes with leadership.</li>
+          <li>Combined user research, market analysis, and competitive insights to find API and data connectivity opportunities worth building, and pushed for reuse of what had already been built.</li>
+          <li>Ran agile ceremonies (planning, grooming, reviews, retros) and kept business priorities and engineering velocity in sync throughout.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="job-header"><span class="job-title">Assistant Manager – CRM Delivery</span><span class="job-period">Apr 2022 – Mar 2023</span></div>
+        <div class="job-company">ICICI Prudential Life Insurance · Mumbai</div>
+        <ul class="job-points">
+          <li>Led the IGMS 2.0 regulatory integration, improving grievance-handling SLA compliance and audit-readiness across digital touchpoints.</li>
+          <li>Managed SIT and UAT — triaged defects, managed expectations on all sides, and made sure releases went out on time and at quality.</li>
+          <li>Reduced production escalations by 40% through workflow improvements, root cause analysis, and getting automated alerting in place before issues became incidents.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="job-header"><span class="job-title">Senior Associate – Business Analysis</span><span class="job-period">Sep 2021 – Mar 2022</span></div>
+        <div class="job-company">ICICI Prudential Life Insurance · Mumbai</div>
+        <ul class="job-points">
+          <li>Translated business requirements into functional and technical specs that CRM delivery teams could act on — fast enough to keep enhancements shipping on schedule.</li>
+          <li>Cut delivery turnaround time by 20% by mapping dependencies clearly and optimising flow across bug fix, enhancement, SIT, and UAT cycles.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Skills & Tools</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Product</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Roadmapping</span>
+          <span class="skill-tag">OKR Frameworks</span>
+          <span class="skill-tag">Working Backwards</span>
+          <span class="skill-tag">JTBD</span>
+          <span class="skill-tag">Go-to-Market</span>
+          <span class="skill-tag">North Star Metrics</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Delivery</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Agile / Scrum</span>
+          <span class="skill-tag">Kanban</span>
+          <span class="skill-tag">Sprint Planning</span>
+          <span class="skill-tag">Backlog Management</span>
+          <span class="skill-tag">SIT & UAT</span>
+          <span class="skill-tag">User Stories</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Technical</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">AWS Bedrock</span>
+          <span class="skill-tag">Cloud Migration</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">CRM Platforms</span>
+          <span class="skill-tag">Life Asia</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Domain</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">FinTech</span>
+          <span class="skill-tag">InsurTech</span>
+          <span class="skill-tag">Digital Payments</span>
+          <span class="skill-tag">Open Finance</span>
+          <span class="skill-tag">IRDAI</span>
+          <span class="skill-tag">IGMS 2.0</span>
+          <span class="skill-tag">Risk Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Education & Research</div>
+    <div class="edu-card">
+      <div class="edu-icon"><i class="ti ti-school"></i></div>
+      <div>
+        <div class="edu-deg">B.E., Computer Engineering · 2021</div>
+        <div class="edu-school">St. Vincent Pallotti College of Engineering and Technology, Nagpur</div>
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-tag">Published Research</div>
+      <div class="rtitle">Radar Vision: Weather Forecasting Using CNN-LSTM</div>
+      <div class="rdesc">Built a CNN-LSTM model for multi-step weather prediction from radar image sequences. My first serious exposure to applied AI/ML — it shaped how I think about data-driven product decisions ever since.</div>
+      <div class="rpubs">IJCRT · Jan 2022 &nbsp;·&nbsp; ICCAE 2021, Goa</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Portfolio · Aditya Taksande · Mumbai, 2026 · taksandeaditya@gmail.com</div>
+
+</body>
+</html>
