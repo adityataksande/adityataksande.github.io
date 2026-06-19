@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Taksande - Technical Project Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  --ink:     #080C10;
+  --ink-2:   #111820;
+  --surface: #0E1520;
+  --line:    rgba(255,255,255,0.07);
+  --muted:   rgba(255,255,255,0.38);
+  --body:    rgba(255,255,255,0.70);
+  --white:   #FFFFFF;
+  --accent:  #00E5A0;
+  --accent-dim: rgba(0,229,160,0.12);
+  --accent-glow: rgba(0,229,160,0.25);
+  --gold:    #F5C542;
+  --r:       10px;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--ink);
+  color: var(--body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 40px;
+  background: rgba(8,12,16,0.85);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+}
+.nav-logo span { color: var(--accent); }
+.nav-links {
+  display: flex; gap: 32px;
+}
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: 9px 20px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  transition: background 0.2s, color 0.2s;
+}
+.nav-cta:hover { background: var(--accent); color: var(--ink); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grid background */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Glow blob */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 15%; left: 55%;
+  width: 600px; height: 500px;
+  background: radial-gradient(ellipse, rgba(0,229,160,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative; z-index: 1;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px; height: 1px;
+  background: var(--accent);
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3.6rem, 8vw, 7rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+.hero h1 .line2 {
+  display: block;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  color: transparent;
+  /* filled on hover */
+  transition: color 0.4s;
+}
+.hero h1 .line2:hover { color: var(--white); }
+
+.hero-desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--body);
+  max-width: 520px;
+  margin-bottom: 44px;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 60px;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: var(--ink);
+  font-family: 'Syne', sans-serif;
+  font-weight: 600; font-size: 13px;
+  padding: 13px 28px; border-radius: 4px;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(255,255,255,0.2); color: var(--white);
+  font-size: 13px; padding: 13px 28px; border-radius: 4px;
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.04); }
+
+/* Metrics strip */
+.hero-metrics {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+}
+.metric {
+  padding: 22px 24px;
+  border-right: 1px solid var(--line);
+}
+.metric:last-child { border-right: none; }
+.metric-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.metric-label {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+
+section { padding: 100px 0; border-top: 1px solid var(--line); }
+
+.sec-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 48px;
+}
+.sec-eyebrow::before {
+  content: '';
+  display: block; width: 24px; height: 1px;
+  background: var(--accent);
+}
+
+.sec-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 48px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 60px;
+  align-items: start;
+}
+.about-body p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--body);
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.about-body p strong { color: var(--white); font-weight: 500; }
+.about-body p:last-child { margin-bottom: 0; }
+
+.about-sidebar {}
+.sidebar-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 28px;
+  margin-bottom: 14px;
+}
+.sidebar-card:last-child { margin-bottom: 0; }
+.sidebar-card h4 {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 14px; font-weight: 400;
+}
+.contact-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--body);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+}
+.contact-item:last-child { border-bottom: none; }
+.contact-item a { color: var(--body); transition: color 0.2s; }
+.contact-item a:hover { color: var(--accent); }
+.contact-icon {
+  width: 28px; height: 28px;
+  background: var(--accent-dim);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contact-icon svg { width: 14px; height: 14px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
+
+.domain-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.domain-tag {
+  font-size: 12px; padding: 5px 12px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-radius: 4px;
+  border: 1px solid rgba(0,229,160,0.15);
+}
+
+/* ============================================================
+   EXPERIENCE TIMELINE
+   ============================================================ */
+.timeline { position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 16px; top: 4px; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+.t-item {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 0 28px;
+  margin-bottom: 56px;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.t-item.visible { opacity: 1; transform: translateY(0); }
+.t-item:last-child { margin-bottom: 0; }
+
+.t-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+.t-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--ink), 0 0 0 4px var(--accent-glow);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.t-body {}
+.t-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  flex-wrap: wrap; gap: 8px;
+  margin-bottom: 4px;
+}
+.t-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 600;
+  color: var(--white);
+}
+.t-period {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.t-company {
+  font-size: 13px; color: var(--muted);
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+.t-points { padding-left: 0; }
+.t-points li {
+  font-size: 14px; line-height: 1.75;
+  color: var(--body);
+  padding: 5px 0 5px 18px;
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  font-weight: 300;
+}
+.t-points li:first-child { border-top: 1px solid var(--line); }
+.t-points li::before {
+  content: '';
+  position: absolute; left: 0; top: 50%;
+  width: 6px; height: 1px;
+  background: var(--accent);
+  opacity: 0.6;
+}
+.t-points li strong { color: var(--white); font-weight: 500; }
+
+/* ============================================================
+   SKILLS
+   ============================================================ */
+.skills-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.skill-block {
+  background: var(--surface);
+  padding: 28px 32px;
+  transition: background 0.2s;
+}
+.skill-block:hover { background: rgba(255,255,255,0.03); }
+.skill-block-title {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 18px; font-weight: 400;
+}
+.skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill {
+  font-size: 12px; padding: 6px 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  color: var(--body);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.pill:hover {
+  background: var(--accent-dim);
+  border-color: rgba(0,229,160,0.3);
+  color: var(--accent);
+}
+
+/* Tools row */
+.tools-row {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin-top: 40px;
+}
+.tool-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; padding: 8px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px; color: var(--body);
+  transition: border-color 0.2s, color 0.2s;
+}
+.tool-chip:hover { border-color: var(--accent); color: var(--white); }
+.tool-chip .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   EDUCATION & RESEARCH
+   ============================================================ */
+.edu-research-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.edu-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 32px;
+}
+.edu-year {
+  font-family: 'Syne', sans-serif;
+  font-size: 3rem; font-weight: 800;
+  color: rgba(0,229,160,0.15);
+  line-height: 1; margin-bottom: 16px;
+  letter-spacing: -0.04em;
+}
+.edu-degree {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 600;
+  color: var(--white); margin-bottom: 6px;
+}
+.edu-school {
+  font-size: 13px; color: var(--muted);
+  line-height: 1.55;
+}
+
+.research-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.research-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+.research-badge {
+  display: inline-block;
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 4px 10px; border-radius: 4px;
+  margin-bottom: 16px;
+}
+.research-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; font-weight: 600;
+  color: var(--white); line-height: 1.4; margin-bottom: 12px;
+}
+.research-desc {
+  font-size: 13px; line-height: 1.8;
+  color: var(--body); font-weight: 300; margin-bottom: 16px;
+}
+.research-meta {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.research-venue {
+  font-size: 11px; padding: 4px 10px;
+  border: 1px solid var(--line); border-radius: 4px;
+  color: var(--muted);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 48px 40px;
+  text-align: center;
+}
+.footer-inner { max-width: 960px; margin: 0 auto; }
+.footer-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem; font-weight: 700; color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.footer-role {
+  font-size: 13px; color: var(--muted); margin-bottom: 24px;
+}
+.footer-links {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 24px;
+}
+.footer-links a {
+  font-size: 12px; color: var(--muted);
+  transition: color 0.2s;
+  letter-spacing: 0.04em;
+}
+.footer-links a:hover { color: var(--accent); }
+.footer-copy {
+  margin-top: 28px; font-size: 11px; color: rgba(255,255,255,0.2);
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 20px 60px; }
+  .wrap { padding: 0 20px; }
+  section { padding: 72px 0; }
+  .about-grid { grid-template-columns: 1fr; }
+  .hero-metrics { grid-template-columns: 1fr; }
+  .metric { border-right: none; border-bottom: 1px solid var(--line); }
+  .metric:last-child { border-bottom: none; }
+  .skills-layout { grid-template-columns: 1fr; }
+  .edu-research-grid { grid-template-columns: 1fr; }
+  .t-item { grid-template-columns: 36px 1fr; gap: 0 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .t-item { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AT<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+  </div>
+  <a class="nav-cta" href="mailto:taksandeaditya@gmail.com">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Technical Project Manager</div>
+    <h1>
+      Aditya
+      <span class="line2">Taksande</span>
+    </h1>
+    <p class="hero-desc">
+      Platform & Integration · FinTech & Payments.<br>
+      4+ years shipping products at the intersection of business strategy, engineering, and cloud - from first brief to post-launch closure.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="mailto:taksandeaditya@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        taksandeaditya@gmail.com
+      </a>
+      <a class="btn-ghost" href="https://linkedin.com/in/adityataksande" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric">
+        <div class="metric-num">30%</div>
+        <div class="metric-label">Reduction in avg. turnaround time via AI automation on AWS Bedrock</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">25%</div>
+        <div class="metric-label">Improvement in first-contact resolution across omnichannel platform</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">40%</div>
+        <div class="metric-label">Drop in production escalations through systematic workflow improvements</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-eyebrow">About</div>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>I'm a TPM who lives at the intersection of <strong>business strategy and engineering</strong> - figuring out what to build, why it matters, and making sure it actually ships on time and at quality.</p>
+        <p>Over four years in <strong>FinTech and Insurtech</strong>, I've owned end-to-end delivery: from requirement workshops and scope definition through SIT, UAT, cutover planning, and post-launch reviews. I've driven cloud migrations on AWS, built AI-driven servicing automation, and managed omnichannel CRM transformations - all while keeping cross-functional teams aligned sprint to sprint.</p>
+        <p>The most valuable thing a project manager can do is keep everyone honest about priorities - and document every decision clearly enough that nothing gets lost between teams.</p>
+      </div>
+      <div class="about-sidebar">
+        <div class="sidebar-card">
+          <h4>Contact</h4>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <a href="mailto:taksandeaditya@gmail.com">taksandeaditya@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            +91 93252 39184
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <a href="https://linkedin.com/in/adityataksande" target="_blank">linkedin.com/in/adityataksande</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            Mumbai, India
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Domain Expertise</h4>
+          <div class="domain-tags">
+            <span class="domain-tag">FinTech</span>
+            <span class="domain-tag">InsurTech</span>
+            <span class="domain-tag">Digital Payments</span>
+            <span class="domain-tag">Open Finance</span>
+            <span class="domain-tag">IRDAI</span>
+            <span class="domain-tag">IGMS 2.0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-eyebrow">Experience</div>
+    <h2 class="sec-title">Delivery Track Record</h2>
+
+    <div class="timeline">
+
+      <div class="t-item">
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <div class="t-header">
+            <span class="t-title">Digital Project Manager</span>
+            <span class="t-period">Jan 2026 - Present</span>
+          </div>
+          <div class="t-company">SBI Funds Management Limited · Mumbai</div>
+          <ul class="t-points">
+            <li>Own end-to-end delivery for two digital platforms - <strong>Darpan and Kiosk</strong> - managing scope, schedule, and milestone tracking from planning through closure.</li>
+            <li>Established full project governance: risk registers, resource plans, and executive dashboards giving senior stakeholders real-time delivery visibility.</li>
+            <li>Lead cross-functional teams spanning business, technology, QA, and operations; chair sprint planning, backlog grooming, and stakeholder reviews.</li>
+            <li>Apply rigorous change control: every new integration assessed for upstream/downstream impact before it enters scope, preventing late-stage surprises.</li>
+            <li>Drive go-to-market planning and post-launch reviews; customer and operational feedback feeds directly back into the delivery roadmap.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <div class="t-header">
+            <span class="t-title">Manager II - Insurance Technology</span>
+            <span class="t-period">Apr 2025 - Dec 2025</span>
+          </div>
+          <div class="t-company">ICICI Prudential Life Insurance · Mumbai</div>
+          <ul class="t-points">
+            <li>Led full project lifecycle - requirement workshops through SIT, UAT, deployment, and post-launch - as the primary escalation point for all delivery issues.</li>
+            <li>Shipped <strong>AI-driven customer servicing automation on AWS Bedrock</strong>; coordinated vendor milestones and cutover planning, cutting average turnaround time by 30%.</li>
+            <li>Authored Working Backwards documents and feature release plans for CRM and Policy Administration System (Life Asia) integrations.</li>
+            <li>Ran Level of Effort estimation sessions with architecture, QA, and business SMEs to produce accurate forecasts and maintain schedule integrity.</li>
+            <li>Chaired architecture review sessions, documenting trade-off decisions against business goals, platform strategy, and long-term maintainability.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <div class="t-header">
+            <span class="t-title">Manager I - CRM & Digital Transformation</span>
+            <span class="t-period">Apr 2023 - Mar 2025</span>
+          </div>
+          <div class="t-company">ICICI Prudential Life Insurance · Mumbai</div>
+          <ul class="t-points">
+            <li>Owned the project roadmap and delivery backlog for an <strong>omnichannel customer engagement platform</strong> (IVR, chatbot, WhatsApp, email) - improved first-contact resolution by 25%.</li>
+            <li>Coordinated the AWS cloud migration and enterprise CRM integration: set goals, security requirements, delivery milestones, and managed scope changes with formal change control.</li>
+            <li>Combined user research, market analysis, and competitive insights to identify API and data connectivity opportunities, reducing rework through reuse of existing components.</li>
+            <li>Produced clear project documentation - flowcharts, process diagrams, requirement specs - enabling engineering, QA, and ops to execute without ambiguity.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <div class="t-header">
+            <span class="t-title">Assistant Manager - CRM Delivery</span>
+            <span class="t-period">Apr 2022 - Mar 2023</span>
+          </div>
+          <div class="t-company">ICICI Prudential Life Insurance · Mumbai</div>
+          <ul class="t-points">
+            <li>Led the <strong>IGMS 2.0 regulatory integration</strong> end-to-end: managed scope, coordinated vendor delivery, and ensured SLA compliance across digital grievance-handling touchpoints.</li>
+            <li>Managed SIT and UAT coordination - defect triage, stakeholder expectation management, and release sign-off - ensuring on-time, quality delivery.</li>
+            <li>Reduced production escalations by 40% through systematic workflow improvements, root cause analysis, and automated alerting before issues became incidents.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <div class="t-header">
+            <span class="t-title">Senior Associate - Business Analysis</span>
+            <span class="t-period">Sep 2021 - Mar 2022</span>
+          </div>
+          <div class="t-company">ICICI Prudential Life Insurance · Mumbai</div>
+          <ul class="t-points">
+            <li>Translated business requirements into functional and technical specifications for CRM delivery teams, enabling enhancements to ship on schedule.</li>
+            <li>Cut delivery turnaround time by 20% by mapping dependencies and optimising handoff flow across bug fix, enhancement, SIT, and UAT cycles.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-eyebrow">Skills</div>
+    <h2 class="sec-title">Capabilities & Tools</h2>
+
+    <div class="skills-layout reveal">
+      <div class="skill-block">
+        <div class="skill-block-title">Project Delivery</div>
+        <div class="skill-pills">
+          <span class="pill">End-to-End PM</span>
+          <span class="pill">Scope Management</span>
+          <span class="pill">Milestone Tracking</span>
+          <span class="pill">Cutover Planning</span>
+          <span class="pill">Post-Launch Review</span>
+          <span class="pill">OKR Frameworks</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Governance & Control</div>
+        <div class="skill-pills">
+          <span class="pill">Risk Registers</span>
+          <span class="pill">Change Control</span>
+          <span class="pill">Issue Escalation</span>
+          <span class="pill">Dependency Mgmt</span>
+          <span class="pill">Status Reporting</span>
+          <span class="pill">Executive Dashboards</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Agile & Delivery Methods</div>
+        <div class="skill-pills">
+          <span class="pill">Agile / Scrum</span>
+          <span class="pill">Kanban</span>
+          <span class="pill">Sprint Planning</span>
+          <span class="pill">Backlog Management</span>
+          <span class="pill">SIT & UAT</span>
+          <span class="pill">Working Backwards</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Technical</div>
+        <div class="skill-pills">
+          <span class="pill">REST APIs</span>
+          <span class="pill">AWS Bedrock</span>
+          <span class="pill">Cloud Migration</span>
+          <span class="pill">SQL</span>
+          <span class="pill">Python</span>
+          <span class="pill">CRM Platforms</span>
+          <span class="pill">Life Asia (PAS)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tools-row reveal reveal-delay-1">
+      <span class="tool-chip"><span class="dot"></span>Jira</span>
+      <span class="tool-chip"><span class="dot"></span>Confluence</span>
+      <span class="tool-chip"><span class="dot"></span>AWS Bedrock</span>
+      <span class="tool-chip"><span class="dot"></span>AI/ML Products</span>
+      <span class="tool-chip"><span class="dot"></span>Resource Plans</span>
+      <span class="tool-chip"><span class="dot"></span>Risk Registers</span>
+      <span class="tool-chip"><span class="dot"></span>Stakeholder Governance</span>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-eyebrow">Education & Research</div>
+    <div class="edu-research-grid">
+
+      <div class="edu-card reveal">
+        <div class="edu-year">2021</div>
+        <div class="edu-degree">B.E., Computer Engineering</div>
+        <div class="edu-school">St. Vincent Pallotti College of Engineering and Technology<br>Nagpur</div>
+      </div>
+
+      <div class="research-card reveal reveal-delay-1">
+        <div class="research-badge">Published Research</div>
+        <div class="research-title">Radar Vision: Weather Forecasting Using CNN-LSTM</div>
+        <div class="research-desc">Built a CNN-LSTM model for multi-step weather prediction from radar image sequences - first serious exposure to applied AI/ML, which continues to shape a data-driven approach to product and delivery decisions.</div>
+        <div class="research-meta">
+          <span class="research-venue">IJCRT · Jan 2022</span>
+          <span class="research-venue">ICCAE 2021, Goa</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-name">Aditya Taksande</div>
+    <div class="footer-role">Technical Project Manager · Mumbai · 2026</div>
+    <div class="footer-links">
+      <a href="mailto:taksandeaditya@gmail.com">taksandeaditya@gmail.com</a>
+      <a href="tel:+919325239184">+91 93252 39184</a>
+      <a href="https://linkedin.com/in/adityataksande" target="_blank">LinkedIn</a>
+    </div>
+    <div class="footer-copy">Built with intentional design · Aditya Taksande Portfolio</div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal, .t-item').forEach(el => observer.observe(el));
+
+// Nav active state
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const ioNav = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.style.color = '');
+      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (link) link.style.color = 'var(--accent)';
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => ioNav.observe(s));
+</script>
+</body>
+</html>
